@@ -9,20 +9,32 @@
     <title>Galerie Image</title>
   </head>
   <body>
+
     <header>
-      <nav>
-        <ul>
-          <li><button id="all">ALL</button></li>
-          <li><button id="sportBtn">sport</button></li>
-          <li><button id="animauxBtn">animaux</button></li>
-          <li><button id="natureBtn">nature</button></li>
-          <li><button id="villeBtn">ville</button></li>
-        </ul>
-      </nav>
+      <h1>GALLERIE IMAGES</h1>
+
+      <div>
+        <label for="search">Search :</label>
+        <input name="search" type="search" placeholder="search the name" id="search">
+      </div>
+
     </header>
 
+    <main>
+      <div id="galerie"></div>
+    </main>
 
-    <div id="galerie"></div>
+    <footer>
+      <nav>
+        <ul class="navbarUl">
+          <li><button id="all">ALL |</button></li>
+          <li><button id="sportBtn">sport |</button></li>
+          <li><button id="animauxBtn">animals |</button></li>
+          <li><button id="natureBtn">nature |</button></li>
+          <li><button id="villeBtn">city</button></li>
+        </ul>
+      </nav>
+    </footer>
 
     <script type="module" src="/main.js"></script>
   </body>
