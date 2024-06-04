@@ -23,7 +23,7 @@ const sportBtn = document.querySelector('#sportBtn')
 const animauxBtn = document.querySelector('#animauxBtn')
 const natureBtn = document.querySelector('#natureBtn')
 const villeBtn = document.querySelector('#villeBtn')
-const allBtn = document.querySelector('#all')
+const allImages = document.querySelector('#all')
 
 function categoryImg(category) {
   let newDb = [];
@@ -52,7 +52,7 @@ villeBtn.addEventListener('click', () => {
   categoryImg('city');
 })
 
-allBtn.addEventListener('click', () => {
+allImages.addEventListener('click', () => {
   renderImages(db)
 })
 
@@ -71,12 +71,62 @@ function searchInput() {
 searchInput()
 
 
-function clickImages(){
-  const allImg = document.querySelectorAll('#imgClick')
-  for(let i = 0; i < allImg.length; i++){
-    allImg[i].addEventListener('click',()=>{
-      // creer un element qui s affaiche devant l utilisateur;
-    })
-  }
-}
-clickImages()
+const addImage = document.querySelector('#addImage')
+
+addImage.addEventListener('click',()=>{
+  const main = document.querySelector('main');
+  const footer = document.querySelector('footer');
+  const div = document.createElement('div');
+  div.className = 'addImageDiv';
+  main.appendChild(div)
+  footer.remove()
+
+
+  div.innerHTML = `
+    <button id='btnBack'>Back</button>
+    <div>
+      <label for='URL'>Add Your Image URL</label>
+      <input name='URL' type='url' id='inputUrl' placeholder='URL'>
+    </div>
+    <div>
+      <label for='title'>Add Your Image Title</label>
+      <input name='title' type='text' id='inputTitle' placeholder='Title'>
+    </div>
+    
+    <label for="pet-select">Choose a categoty :</label>
+
+    <select name="category" id="categorySelect">
+      <option value="">--Please choose an option--</option>
+      <option value="sport">sport</option>
+      <option value="animal">animal</option>
+      <option value="nature">nature</option>
+      <option value="city">city</option>
+    </select>
+
+    <input id='submit' type="submit" value="submit">
+  `
+
+  const Submit = document.querySelector('#submit');
+  const btnBack = document.querySelector('#btnBack');
+  const inputUrl = document.querySelector('#inputUrl');
+  const inputTitle = document.querySelector('#inputTitle');
+  const categorySelect = document.querySelector('#categorySelect');
+  
+  btnBack.addEventListener('click',()=>{
+    div.remove();
+    document.body.appendChild(footer)
+  })
+
+
+  Submit.addEventListener('click',()=>{
+    const inputTitleValue = inputTitle.value;
+    const inputUrlValue = inputUrl.value;
+    const categorySelectValue = categorySelect.value;
+    let newObjet = {"id":`${inputTitleValue}`, "category":`${categorySelectValue}`,"url":`${inputUrlValue}`}
+    db.push(newObjet);
+    console.log(db);
+    div.remove();
+    document.body.appendChild(footer)
+  })
+
+})
